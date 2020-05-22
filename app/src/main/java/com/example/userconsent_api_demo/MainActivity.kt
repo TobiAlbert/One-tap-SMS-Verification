@@ -33,6 +33,22 @@ class MainActivity : AppCompatActivity() {
         // attempt to retrieve the user's phone number
         requestHint()
         btn_send_phone.setOnClickListener { sendPhoneNumberToRemoteServer() }
+
+        // start listening for incoming messages
+        // if expected phone number is known, you can pass it, else pass `null`.
+        val task = SmsRetriever.getClient(this).startSmsUserConsent(null)
+        task.addOnCompleteListener {
+            task?.exception?.let {
+                // handle possible exception
+                Log.e(TAG, "Task Exception: $it")
+                return@addOnCompleteListener
+            }
+
+            if (task.isSuccessful) {
+                val intentFilter = IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION)
+                registerReceiver(smsBroadcastReceiver, intentFilter, SmsRetriever.SEND_PERMISSION, null)
+            }
+        }
     }
 
     private fun requestHint() {
@@ -57,22 +73,6 @@ class MainActivity : AppCompatActivity() {
         val phoneNumber = et_phone.text.toString()
         Toast.makeText(this, "Sending Phone to Server... $phoneNumber", Toast.LENGTH_LONG)
             .show()
-
-        // start listening for incoming messages
-        // if expected phone number is known, you can pass it, else pass `null`.
-        val task = SmsRetriever.getClient(this).startSmsUserConsent(null)
-        task.addOnCompleteListener {
-            task?.exception?.let {
-                // handle possible exception
-                Log.e(TAG, "Task Exception: $it")
-                return@addOnCompleteListener
-            }
-
-            if (task.isSuccessful) {
-                val intentFilter = IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION)
-                registerReceiver(smsBroadcastReceiver, intentFilter, SmsRetriever.SEND_PERMISSION, null)
-            }
-        }
     }
 
     private fun parseMessageForOtp(message: String?) {
