@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">UserConsent-Api-Demo</string>
+    <string name="hint_enter_phone_number">Phone Number</string>
+    <string name="txt_send_phone">Send Phone</string>
+</resources>
