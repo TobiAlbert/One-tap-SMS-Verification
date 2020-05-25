@@ -7,10 +7,7 @@ Implementation of One-tap SMS Verification using Google's User-Consent API.
 ```
 
 ## Screenshots
-<img src="screenshots/SC_1.png" alt="App Launch" width="270" height="480"/>    
-<img src="screenshots/SC_2.png" alt="Send Number to Server" width="270" height="480"/>    
-<img src="screenshots/SC_3.png" alt="Ask User for Permission to read received SMS" width="270" height="480"/>    
-<img src="screenshots/SC_4.png" alt="Enter OTP into PinView" width="270" height="480"/>    
+<img src="screenshots/SC_1.png" alt="App Launch" width="270" height="480"/> <img src="screenshots/SC_2.png" alt="Send Number to Server" width="270" height="480"/> <img src="screenshots/SC_3.png" alt="Ask User for Permission to read received SMS" width="270" height="480"/> <img src="screenshots/SC_4.png" alt="Enter OTP into PinView" width="270" height="480"/>    
 
 ## Libraries Used
 - Play Services Auth Component
